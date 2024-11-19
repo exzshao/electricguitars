@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Electric Guitars Work</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-blue-900 min-h-screen text-gray-100 antialiased">
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-gray-900 bg-opacity-90 backdrop-blur-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <span class="text-xl font-bold">Electric Guitar Science</span>
+                <div class="flex space-x-4">
+                    <a href="#basics" class="nav-link hover:text-blue-400 transition">Basics</a>
+                    <a href="#pickups" class="nav-link hover:text-blue-400 transition">Pickups</a>
+                    <a href="#resonance" class="nav-link hover:text-blue-400 transition">Resonance</a>
+                    <a href="#sound" class="nav-link hover:text-blue-400 transition">Sound Production</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Hero Section -->
+        <section class="text-center mb-16">
+            <h1 class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                How Electric Guitars Work
+            </h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                By Edward Shao, Ryan Yang, Frank Fang, Neil Tong
+            </p>
+            <p class="text-gray-500 max-w-2xl mx-auto">
+                visit on PC not on mobile!! please!
+            </p>
+        </section>
+
+        <!-- Interactive Guitar Section -->
+        <section id="basics" class="mb-16 glass-effect rounded-xl p-8">
+            <h2 class="text-3xl font-bold mb-6">Interactive (Electric?) Guitar</h2>
+            <div class="guitar-diagram relative bg-gray-800 rounded-lg overflow-hidden">
+                <svg viewBox="0 0 800 300" class="w-full h-full">
+                    <!-- Guitar Body - Stratocaster-inspired shape -->
+                    <path d="M 150,50 
+                            C 180,50 200,50 220,55
+                            L 250,60
+                            C 300,70 320,80 330,90
+                            L 350,120
+                            C 360,140 360,160 350,180
+                            L 330,210
+                            C 320,220 300,230 250,240
+                            L 220,245
+                            C 200,250 180,250 150,250
+                            L 120,245
+                            C 80,235 60,220 50,200
+                            C 40,180 40,120 50,100
+                            C 60,80 80,65 120,55
+                            L 150,50" 
+                          class="guitar-part fill-current text-red-600"
+                          data-part="body" />
+                    
+                    <!-- Neck -->
+                    <path d="M 330,90 
+                            L 700,90 
+                            L 720,100
+                            L 720,200
+                            L 700,210
+                            L 330,210"
+                          class="guitar-part fill-current text-red-800"
+                          data-part="neck" />
+
+                    <!-- Headstock -->
+                    <path d="M 700,90
+                            L 720,80
+                            L 780,70
+                            L 790,80
+                            L 790,220
+                            L 780,230
+                            L 720,220
+                            L 700,210"
+                          class="guitar-part fill-current text-red-800"
+                          data-part="neck" />
+                    
+                    <!-- Bridge -->
+                    <rect x="180" y="140" width="40" height="20" 
+                          class="guitar-part fill-current text-gray-400"
+                          data-part="bridge" />
+                    
+                    <!-- Pickups -->
+                    <g data-part="pickup" class="guitar-part">
+                        <!-- Bridge Pickup -->
+                        <rect x="240" y="110" width="30" height="80" 
+                              class="fill-current text-gray-900 stroke-current stroke-2" />
+                        <rect x="238" y="108" width="34" height="84" 
+                              class="fill-none stroke-current text-gray-400 stroke-2" />
+                        
+                        <!-- Middle Pickup -->
+                        <rect x="310" y="110" width="30" height="80" 
+                              class="fill-current text-gray-900 stroke-current stroke-2" />
+                        <rect x="308" y="108" width="34" height="84" 
+                              class="fill-none stroke-current text-gray-400 stroke-2" />
+                        
+                        <!-- Neck Pickup -->
+                        <rect x="380" y="110" width="30" height="80" 
+                              class="fill-current text-gray-900 stroke-current stroke-2" />
+                        <rect x="378" y="108" width="34" height="84" 
+                              class="fill-none stroke-current text-gray-400 stroke-2" />
+                    </g>
+
+                    <!-- Control Plate -->
+                    <path d="M 240,240 
+                            L 280,240 
+                            A 10,10 0 0 1 280,260
+                            L 240,260
+                            A 10,10 0 0 1 240,240"
+                          class="fill-current text-gray-400" />
+                    
+                    <!-- Volume/Tone Knobs -->
+                    <circle cx="250" cy="250" r="5" class="fill-current text-gray-300" />
+                    <circle cx="270" cy="250" r="5" class="fill-current text-gray-300" />
+                    
+                    <!-- Strings -->
+                    <g id="strings-group" class="guitar-part" data-part="strings">
+                        <!-- Low E String -->
+                        <line class="guitar-string" 
+                            x1="180" y1="115" x2="750" y2="115" 
+                            stroke="#D1D5DB" 
+                            stroke-width="3"
+                            data-note="E2" />
+                        <!-- A String -->
+                        <line class="guitar-string" 
+                            x1="180" y1="132" x2="750" y2="132" 
+                            stroke="#D1D5DB" 
+                            stroke-width="2.5"
+                            data-note="A2" />
+                        <!-- D String -->
+                        <line class="guitar-string" 
+                            x1="180" y1="149" x2="750" y2="149" 
+                            stroke="#D1D5DB" 
+                            stroke-width="2"
+                            data-note="D3" />
+                        <!-- G String -->
+                        <line class="guitar-string" 
+                            x1="180" y1="166" x2="750" y2="166" 
+                            stroke="#D1D5DB" 
+                            stroke-width="1.5"
+                            data-note="G3" />
+                        <!-- B String -->
+                        <line class="guitar-string" 
+                            x1="180" y1="183" x2="750" y2="183" 
+                            stroke="#D1D5DB" 
+                            stroke-width="1.25"
+                            data-note="B3" />
+                        <!-- High E String -->
+                        <line class="guitar-string" 
+                            x1="180" y1="200" x2="750" y2="200" 
+                            stroke="#D1D5DB" 
+                            stroke-width="1"
+                            data-note="E4" />
+                    </g>
+
+                    <!-- Fret Markers -->
+                    <g class="fret-markers fill-current text-gray-500">
+                        <circle cx="450" cy="150" r="4" />
+                        <circle cx="520" cy="150" r="4" />
+                        <circle cx="590" cy="150" r="4" />
+                        <circle cx="660" cy="150" r="4" />
+                    </g>
+                </svg>
+            </div>
+            <div id="partInfo" class="info-card mt-4 p-4 bg-gray-800 rounded-lg text-gray-100">
+                Try plucking the guitar strings by dragging (a little gimmicky).
+            </div>
+        </section>
+        <section id="science" class="mb-16 glass-effect rounded-xl p-8 bg-gray-800 bg-opacity-50">
+            <h2 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-purple-500">
+                An Overview - How It Works: The Science Behind Electric Guitars
+            </h2>
+            
+            <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                Electric guitars convert the string's vibrations into electrical signals and then use the concepts of magnetism and electromagnetic induction to amplify them as sound.
+            </p>
+        
+            <!-- 1. String Vibration -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-4 text-red-400">
+                    1. String Vibration: Turning Energy Into Motion
+                </h3>
+                <div class="space-y-4 text-gray-300">
+                    <p class="leading-relaxed">
+                        When a string is either plucked or strummed, its vibrational frequency will depend on length, tension, and thickness. Such vibration produces mechanical energy which dictates the note's pitch and tone.
+                    </p>
+                    <div class="bg-gray-900 rounded-lg p-6 space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-8 bg-red-400 rounded"></div>
+                            <p><strong>Thicker strings</strong>, like the low E, vibrate more slowly and produce lower notes.</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1 h-8 bg-red-400 rounded"></div>
+                            <p><strong>Thinner strings</strong>, like the high E, vibrate more quickly and produce higher notes.</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        Take the low E string, remove your finger and let the string ring on its own. It sounds flat and boomy. Now place your finger on the high E string and do the same. It resonates with a musical "ping!" - a small and sharp sound.
+                    </p>
+                </div>
+            </div>
+        
+            <!-- 2. Magnetic Pickup Operation -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-4 text-red-400">
+                    2. Magnetic Pickup Operation: Converting Motion Into Electricity
+                </h3>
+                <div class="space-y-4 text-gray-300">
+                    <p class="leading-relaxed">
+                        The pickups are situated beneath the strings and at the heart of electric guitar sound reproduction:
+                    </p>
+                    <p class="leading-relaxed">
+                        As a string vibrates, it disrupts the magnetic field, causing variations in the strength of the magnetic flux. This agitation causes an electrical current in the coil of the pickup-a process described by Faraday's Law of Electromagnetic Induction.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-900 rounded-lg p-6">
+                            <h4 class="font-bold mb-2">Single-coil Pickups</h4>
+                            <p>Bright and clear in tone, such as the Fender Stratocaster. They tend to pick up interference, hence that very distinctive hum.</p>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6">
+                            <h4 class="font-bold mb-2">Humbucker Pickups</h4>
+                            <p>Include two coils wired in opposite polarity, reducing interference and producing a warmer tone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- 3. Signal Transmission -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-4 text-red-400">
+                    3. Signal Transmission: Carrying the Sound to Amplifiers
+                </h3>
+                <div class="space-y-4 text-gray-300">
+                    <p class="leading-relaxed">
+                        Thus, the electrical signal sourced from the pickups travels through the guitar's wiring to the output jack, from where it goes through a cable to the amplifier for processing and amplification.
+                    </p>
+                    <div class="bg-gray-900 rounded-lg p-6">
+                        <h4 class="font-bold mb-4">Tone and Volume Controls:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                                <span>The volume knob regulates the total output of the signal.</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                                <span>The tone knob filters high frequencies through a capacitor, creating a rounder, warmer sound.</span>
+                            </li>
+                        </ul>
+                        <p class="mt-4 italic">
+                            As an example, the easy rolling of the tone knob gives a softer sound, which is very typical in jazz or blues music.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- 4. Real-World Examples -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-4 text-red-400">
+                    4. Real-World Examples of Electric Guitar Operation
+                </h3>
+                <div class="space-y-6 text-gray-300">
+                    <div class="bg-gray-900 rounded-lg p-6">
+                        <h4 class="font-bold mb-2">Clear Tone</h4>
+                        <p>In the clean setting, the character of the guitar is clear and natural, representing the string vibration.</p>
+                        <p class="mt-2 italic">Example: The intro to "Under the Bridge" by the Red Hot Chili Peppers demonstrates the stunning character of tones produced by single-coil pickups.</p>
+                    </div>
+        
+                    <div class="bg-gray-900 rounded-lg p-6">
+                        <h4 class="font-bold mb-2">Distorted Sound</h4>
+                        <p>The overdriven signal on the amplifiers creates that grittiness and <strong>distorted sound</strong> that packs a punch with harmonics.</p>
+                        <p class="mt-2 italic">Example: The great riff in "Smoke on the Water" by Deep Purple shows the rich, distorted character of humbuckers.</p>
+                    </div>
+        
+                    <div class="bg-gray-900 rounded-lg p-6">
+                        <h4 class="font-bold mb-2">Performance Dynamics</h4>
+                        <p>Performances are loud in nature, meaning the harder or further you strike it, coupled with the vibration of the string, must be loud and severe.</p>
+                        <p class="mt-2 italic">Example: Unleashing light picking sequences produces mellow tones, whereas aggressive strumming creates a well of <strong>all-powerful sounds</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="pickups" class="mb-16 glass-effect rounded-xl p-8 bg-gray-800 bg-opacity-50">
+            <!-- Title -->
+            <h2 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                Electromagnetic Induction: The Science Behind Electric Guitar Pickups
+            </h2>
+            
+            <!-- Introduction -->
+            <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                In simple words, electromagnetic induction is yet another important principle through which electric guitars convert string vibration into electrical signals.
+            </p>
+        
+            <!-- 1. Magnetic Field Generation -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-blue-400 flex items-center">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-900 text-blue-200 mr-3 text-sm">1</span>
+                    Magnetic Field Generation
+                </h3>
+                <div class="bg-gray-900 rounded-xl p-6 space-y-4">
+                    <p class="text-gray-300 font-semibold">The pick-ups are the heart and soul of every electric guitar.</p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-blue-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            <span>When the string vibrates, it momentarily generates its own little magnetic field, which interacts with the original magnetic field of the pickups.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-blue-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="italic">For example, suppose you pluck a steel string. While it vibrates, it gyrates a bit in the magnetic field and generates an electromagnetic induction process in that sector, causing slight ripples in the field.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- 2. String Interaction -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-blue-400 flex items-center">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-900 text-blue-200 mr-3 text-sm">2</span>
+                    String Interaction and Magnetic Flux Disturbance
+                </h3>
+                <div class="space-y-6">
+                    <p class="text-gray-300 leading-relaxed">
+                        Whenever the string vibrates, the distance between it and the pickup changes. Such movement upsets the magnetic field and changes the magnetic flux-or the total magnetic field passing through the coil.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-900 rounded-xl p-6">
+                            <h4 class="font-bold text-blue-300 mb-3">Amplitude</h4>
+                            <p class="text-gray-300">The harder a string is plucked, the more it vibrates, this results in a louder sound output.</p>
+                        </div>
+                        <div class="bg-gray-900 rounded-xl p-6">
+                            <h4 class="font-bold text-blue-300 mb-3">Frequency</h4>
+                            <p class="text-gray-300">The rate at which the string vibrates (the frequency) determines the pitch of sound.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-900 bg-opacity-30 rounded-xl p-6">
+                        <p class="text-gray-300 italic">
+                            <span class="font-bold text-blue-300">Example:</span> If you strike the low E string, its slower vibration will disturb the magnetic field at a lower frequency and produce a lower tone.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- 3. Faraday's Law -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-blue-400 flex items-center">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-900 text-blue-200 mr-3 text-sm">3</span>
+                    Faraday's Law of Electromagnetic Induction
+                </h3>
+                <div class="space-y-6">
+                    <div class="bg-gray-900 rounded-xl p-6 space-y-4">
+                        <p class="text-gray-300">For any variation in magnetic flux, induction of an electrical current into the coil of the pickup occurs. Faraday's Law describes this, and put simply, a variable magnetic field in a conductor produces an electric current in a conductor nearby.</p>
+                        <p class="text-gray-300">The strength of the induced current depends on one thing: how fast the string is vibrating-interpreted as frequency-and the amplitude of vibration. The resulting electrical signal is a reflection of the physical vibration of the string:</p>
+                    </div>
+        
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <h4 class="font-bold text-blue-300 mb-4">Single-Coil Pickup vs. Humbucker</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+                            <div class="border border-blue-900 rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Single-Coil</h5>
+                                <p>Gives a clean, bright signal but is easily affected by noise from electromagnetic interference.</p>
+                            </div>
+                            <div class="border border-blue-900 rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Humbucker</h5>
+                                <p>Wired together in opposite polarity, cancel interference and provide a fuller, warmer sound.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Conclusion -->
+            <div class="text-gray-300 leading-relaxed bg-gray-900 rounded-xl p-6">
+                <p>
+                    Electromagnetic induction thus allows electric guitars to act as a conduit between physical vibration and electric energy, thereby one of the most versatile instruments of modern music. It is this very seamless conversion that allows the electric guitar to capture the spirit of musical expression, facilitating the exploration of unlimited exploration and tonal possibilities.
+                </p>
+            </div>
+        </section>
+        <section id="resonance" class="mb-16 glass-effect rounded-xl p-8 bg-gray-800 bg-opacity-50">
+            <!-- Title -->
+            <h2 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+                Resonance in Electric Guitars
+            </h2>
+            <!-- Natural Frequency Explanation -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-green-400">Natural Frequency</h3>
+                <div class="bg-gray-900 rounded-xl p-6 space-y-4">
+                    <p class="text-gray-300">
+                        Each string on the guitar has its own natural frequency. This is the whole reason we tune guitars! 
+                        When we tune a guitar, we change the tension of its strings, and we aim to match the string's natural 
+                        frequency to the correct note's frequency. It's natural frequency is also affected by the thickness and the length.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-bold text-green-400 mb-2">String Tension</h4>
+                            <p class="text-gray-300">Higher tension = Higher frequency = Higher pitch</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-bold text-green-400 mb-2">String Thickness</h4>
+                            <p class="text-gray-300">Thicker string = Lower frequency = Lower pitch</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Frets and String Length -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-green-400">Frets and String Length</h3>
+                <div class="bg-gray-900 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <p class="text-gray-300 mb-4">
+                                To play more notes than just the open strings, we use frets - the metal bands on the neck 
+                                of the guitar. Pressing a string against a fret shortens its length, since the string only 
+                                vibrates effectively up until where your finger presses down on it.
+                            </p>
+                            <div class="bg-gray-800 p-4 rounded-lg">
+                                <h4 class="font-bold text-green-400 mb-2">The Science Behind It</h4>
+                                <p class="text-gray-300">
+                                    This is similar to the "Standing Waves on a string" example - changing the length 
+                                    changes the wavelength, which changes the frequency. The closer to the guitar body 
+                                    you press, the shorter the string length becomes, producing a higher frequency note.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Fret Diagram -->
+                        <div class="w-full md:w-1/3 bg-gray-800 p-4 rounded-lg">
+                            <div class="aspect-w-16 aspect-h-9">
+                                <svg viewBox="0 0 200 100" class="w-full">
+                                    <!-- Fretboard -->
+                                    <rect x="20" y="20" width="160" height="60" 
+                                          class="fill-amber-900" />
+                                    <!-- Frets -->
+                                    <line x1="40" y1="20" x2="40" y2="80" 
+                                          class="stroke-gray-400 stroke-2" />
+                                    <line x1="80" y1="20" x2="80" y2="80" 
+                                          class="stroke-gray-400 stroke-2" />
+                                    <line x1="120" y1="20" x2="120" y2="80" 
+                                          class="stroke-gray-400 stroke-2" />
+                                    <line x1="160" y1="20" x2="160" y2="80" 
+                                          class="stroke-gray-400 stroke-2" />
+                                </svg>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-2 text-center">
+                                Frets divide the string into specific lengths for precise notes
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Electric vs Acoustic -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-green-400">Electric vs Acoustic: The Resonance Difference</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <h4 class="font-bold text-green-400 mb-4">Acoustic Guitars</h4>
+                        <div class="space-y-4">
+                            <svg viewBox="0 0 200 100" class="w-full">
+                                <!-- Acoustic body outline -->
+                                <path d="M 20,20 C 40,20 160,20 180,20 
+                                         C 190,40 190,60 180,80
+                                         C 160,80 40,80 20,80
+                                         C 10,60 10,40 20,20" 
+                                      class="fill-none stroke-gray-400 stroke-2" />
+                                <!-- Sound hole -->
+                                <circle cx="100" cy="50" r="15" 
+                                        class="fill-none stroke-gray-400 stroke-2" />
+                            </svg>
+                            <p class="text-gray-300">
+                                Requires a hollow body to resonate and amplify the sound from its strings
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl p-6">
+                        <h4 class="font-bold text-green-400 mb-4">Electric Guitars</h4>
+                        <div class="space-y-4">
+                            <svg viewBox="0 0 200 100" class="w-full">
+                                <!-- Electric body outline -->
+                                <path d="M 20,30 L 180,30 L 180,70 L 20,70 Z" 
+                                      class="fill-none stroke-gray-400 stroke-2" />
+                                <!-- Pickups -->
+                                <rect x="70" y="40" width="20" height="20" 
+                                      class="fill-gray-600 stroke-gray-400" />
+                                <rect x="110" y="40" width="20" height="20" 
+                                      class="fill-gray-600 stroke-gray-400" />
+                            </svg>
+                            <p class="text-gray-300">
+                                Only cares about the actual frequency of the strings - sound is captured via "pickups" and amplification is done electronically.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- String Physics Section -->
+        <section id="resonance" class="mb-16 glass-effect rounded-xl p-8">
+            <h2 class="text-3xl font-bold mb-6">String Physics and Resonance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold">How Strings Work</h3>
+                    <div class="bg-gray-800 rounded-lg p-6">
+                        <p class="text-gray-300 mb-4">
+                            Each string on the guitar has its own natural frequency determined by three key factors:
+                        </p>
+                        <ul class="list-disc pl-6 text-gray-300">
+                            <li>String thickness affects the fundamental frequency</li>
+                            <li>String tension (adjusted when tuning)</li>
+                            <li>String length (changed by pressing frets)</li>
+                        </ul>
+                        <div class="mt-4 p-4 bg-gray-700 rounded-lg">
+                            <p class="text-sm">
+                                Thicker strings, like the low E, vibrate more slowly and produce lower notes.
+                                Thinner strings, like the high E, vibrate more quickly and produce higher notes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">String Vibration Demo</h3>
+                    <div class="demo-container p-4">
+                        <div id="stringDemo" class="h-48 bg-gray-800 rounded-lg relative flex items-center justify-center">
+                            <div class="absolute left-0 right-0 top-1/2 h-0.5 bg-blue-400"></div>
+                        </div>
+                        <button onclick="animateString()" 
+                                class="mt-4 w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg transition interactive-button">
+                            Pluck String
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="sound" class="mb-16 glass-effect rounded-xl p-8 bg-gray-800 bg-opacity-50">
+            <!-- Title -->
+            <h2 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+                Sound Production
+            </h2>
+        
+            <!-- Interactive Signal Chain Visualization -->
+            <div class="mb-12">
+                <div class="bg-gray-900 rounded-xl p-6">
+                    <h3 class="text-2xl font-bold mb-6 text-purple-400">The Signal Chain</h3>
+                    <div class="relative">
+                        <!-- Signal Chain Animation -->
+                        <div class="signal-chain-container">
+                            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 md:space-x-4">
+                                <!-- String -->
+                                <div class="w-full md:w-32 aspect-square bg-gray-800 rounded-xl p-4 relative group hover:bg-gray-700 transition-all">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="w-full h-1 bg-purple-400 vibrating-string"></div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-0 right-0 text-center text-sm text-purple-300">
+                                        String Vibration
+                                    </div>
+                                </div>
+        
+                                <!-- Arrow 1 -->
+                                <div class="hidden md:block w-12 h-2 bg-purple-500 signal-flow"></div>
+        
+                                <!-- Pickup -->
+                                <div class="w-full md:w-32 aspect-square bg-gray-800 rounded-xl p-4 relative group hover:bg-gray-700 transition-all">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                            <circle cx="50" cy="50" r="40" class="fill-none stroke-purple-400 stroke-2 magnetic-field" />
+                                            <rect x="35" y="30" width="30" height="40" class="fill-gray-600" />
+                                        </svg>
+                                    </div>
+                                    <div class="absolute bottom-2 left-0 right-0 text-center text-sm text-purple-300">
+                                        Magnetic Field
+                                    </div>
+                                </div>
+        
+                                <!-- Arrow 2 -->
+                                <div class="hidden md:block w-12 h-2 bg-purple-500 signal-flow"></div>
+        
+                                <!-- Amplifier -->
+                                <div class="w-full md:w-32 aspect-square bg-gray-800 rounded-xl p-4 relative group hover:bg-gray-700 transition-all">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                            <path d="M20,20 L80,50 L20,80 Z" class="fill-purple-400 amplifier-icon" />
+                                        </svg>
+                                    </div>
+                                    <div class="absolute bottom-2 left-0 right-0 text-center text-sm text-purple-300">
+                                        Amplification
+                                    </div>
+                                </div>
+        
+                                <!-- Arrow 3 -->
+                                <div class="hidden md:block w-12 h-2 bg-purple-500 signal-flow"></div>
+        
+                                <!-- Speaker -->
+                                <div class="w-full md:w-32 aspect-square bg-gray-800 rounded-xl p-4 relative group hover:bg-gray-700 transition-all">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                            <circle cx="50" cy="50" r="40" class="fill-none stroke-purple-400 stroke-2 speaker-cone" />
+                                            <circle cx="50" cy="50" r="5" class="fill-purple-400" />
+                                        </svg>
+                                    </div>
+                                    <div class="absolute bottom-2 left-0 right-0 text-center text-sm text-purple-300">
+                                        Sound Waves
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Process Steps -->
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Steps 1-3 -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-900 rounded-xl p-6 transform hover:scale-105 transition-transform">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-purple-300 font-bold">
+                                    1
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-300 mb-2">String Vibration</h4>
+                                    <p class="text-gray-300">
+                                        When a string vibrates at its resonant frequency, it moves through a magnetic field created by pickups under the strings.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="bg-gray-900 rounded-xl p-6 transform hover:scale-105 transition-transform">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-purple-300 font-bold">
+                                    2
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-300 mb-2">Magnetic Field Disturbance</h4>
+                                    <p class="text-gray-300">
+                                        This moving metal string disturbs the magnetic field, creating a changing magnetic field.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="bg-gray-900 rounded-xl p-6 transform hover:scale-105 transition-transform">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-purple-300 font-bold">
+                                    3
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-300 mb-2">Current Induction</h4>
+                                    <p class="text-gray-300">
+                                        This changing field induces an electrical current in the pickup's wire coils.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Steps 4-6 -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-900 rounded-xl p-6 transform hover:scale-105 transition-transform">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-purple-300 font-bold">
+                                    4
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-300 mb-2">Signal Matching</h4>
+                                    <p class="text-gray-300">
+                                        The electrical signal perfectly matches the frequency of the string's vibration.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="bg-gray-900 rounded-xl p-6 transform hover:scale-105 transition-transform">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-purple-300 font-bold">
+                                    5
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-300 mb-2">Amplification</h4>
+                                    <p class="text-gray-300">
+                                        This signal then goes to an amplifier (the amp), which boosts it for us to listen to. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="bg-gray-900 rounded-xl p-6 transform hover:scale-105 transition-transform">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-purple-300 font-bold">
+                                    6
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-300 mb-2">Sound Wave Production</h4>
+                                    <p class="text-gray-300">
+                                        Finally, the speaker converts this electrical energy back into sound waves by moving air.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <style>
+                @keyframes signalFlow {
+                    0% { transform: scaleX(0); transform-origin: left; }
+                    50% { transform: scaleX(1); transform-origin: left; }
+                    50.1% { transform: scaleX(1); transform-origin: right; }
+                    100% { transform: scaleX(0); transform-origin: right; }
+                }
+        
+                @keyframes vibrate {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(2px); }
+                }
+        
+                @keyframes pulse {
+                    0%, 100% { transform: scale(1); opacity: 0.5; }
+                    50% { transform: scale(1.1); opacity: 1; }
+                }
+        
+                @keyframes cone {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                }
+        
+                .signal-flow {
+                    animation: signalFlow 2s infinite;
+                }
+        
+                .vibrating-string {
+                    animation: vibrate 0.1s infinite;
+                }
+        
+                .magnetic-field {
+                    animation: pulse 2s infinite;
+                }
+        
+                .amplifier-icon {
+                    animation: pulse 1s infinite;
+                }
+        
+                .speaker-cone {
+                    animation: cone 0.5s infinite;
+                }
+            </style>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>Interactive Electric Guitar Science Demonstration</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

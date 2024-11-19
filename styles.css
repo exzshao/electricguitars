@@ -1,0 +1,121 @@
+/* Base animations */
+@keyframes stringVibrate {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(3px); }
+    75% { transform: translateY(-3px); }
+}
+
+.string-vibration {
+    animation: stringVibrate 0.2s ease-in-out;
+}
+
+@keyframes magnetic-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+}
+
+.magnetic-field {
+    animation: magnetic-pulse 2s infinite;
+}
+
+@keyframes signal-flow {
+    0% { transform: scaleX(0); transform-origin: left; }
+    50% { transform: scaleX(1); transform-origin: left; }
+    50.1% { transform: scaleX(1); transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+}
+
+.signal-animation {
+    animation: signal-flow 3s infinite;
+}
+
+/* Interactive elements */
+.guitar-part {
+    transition: all 0.3s ease;
+}
+
+.guitar-part:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+
+/* Glass effect styling */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Custom transitions */
+.fade-transition {
+    transition: opacity 0.3s ease;
+}
+
+/* Component-specific styles */
+.info-card {
+    min-height: 100px;
+    transition: all 0.3s ease;
+}
+
+.demo-container {
+    aspect-ratio: 16/9;
+    background: rgba(17, 24, 39, 0.8);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .guitar-diagram {
+        aspect-ratio: 4/3;
+    }
+}
+
+/* Previous CSS remains the same */
+
+/* Add these new styles for interactive strings */
+.guitar-string {
+    cursor: pointer;
+    transform-origin: center left;
+    transition: stroke 0.2s ease;
+}
+
+.guitar-string:hover {
+    stroke: #60A5FA;
+    stroke-width: 3px;
+}
+
+.guitar-string.active {
+    cursor: grabbing;
+}
+
+/* String glow effect */
+.guitar-string-glow {
+    filter: drop-shadow(0 0 3px #60A5FA);
+}
+
+/* Pickup animation when string is plucked */
+.pickup-active {
+    animation: pickup-pulse 0.5s ease-out;
+}
+
+@keyframes pickup-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* String tension visualization */
+.tension-indicator {
+    position: absolute;
+    background: linear-gradient(90deg, #3B82F6 0%, #60A5FA 100%);
+    height: 4px;
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.guitar-string:hover + .tension-indicator {
+    opacity: 0.5;
+}
